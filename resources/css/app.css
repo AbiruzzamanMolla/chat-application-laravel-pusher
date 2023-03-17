@@ -32,6 +32,6 @@ body{
 }
 .direct-chat-messages {
     padding: 10px;
-    height: 150px;
+    height: 300px;
     overflow: auto;
 }

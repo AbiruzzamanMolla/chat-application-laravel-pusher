@@ -1,5 +1,23 @@
 import './bootstrap';
 
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-left",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 $(document).ready(function(){
 
     $(document).on('click','#send_message',function (e){
@@ -20,8 +38,12 @@ $(document).ready(function(){
                 username: username,
                 message: message,
             },
-            success:function(res){
-                console.log('send');
+            success: function (res) {
+                console.log(res);
+                if (res.success) {
+                    toastr.success(res.message);
+                    $('#message').val('');
+                }
             }
         });
 
@@ -29,7 +51,13 @@ $(document).ready(function(){
 });
 
 window.Echo.channel('chat')
-    .listen('.message',(e)=>{
-        $('#messages').append('<p><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
-        $('#message').val('');
+    .listen('.message', (e) => {
+        let username = $('#username').val();
+        $('#emptyMessage').hide();
+        if (username !== e.username) {
+            toastr.success("New message!");
+            $('#messages').append('<p><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
+        } else {
+            $('#messages').append('<p class="d-flex justify-content-end"><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
+        }
     });
