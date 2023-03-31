@@ -47,7 +47,7 @@
                         <div class="direct-chat-messages" id="messages">
                             @forelse ($messages as $chat)
                             <p @if($chat->username == auth()->user()->name)class="d-flex
-                                justify-content-end"@endif><strong>{{ $chat->username }}: </strong> {{ $chat->message }}
+                                justify-content-end"@endif><strong>{{ $chat->username }} ({{ date_format($chat->created_at,"D d M, H:i a") }}): </strong> {{ $chat->message }}
                             </p>
                             @empty
                             <p id="emptyMessage">No message history!</p>
@@ -89,7 +89,7 @@
         });
         
     </script>
-    <script src="{{ asset('build\assets\app-869ff48b.js') }}"></script>
+    <script src="{{ asset('build\assets\app-4d24cefa.js') }}"></script>
 </body>
 
 </html>

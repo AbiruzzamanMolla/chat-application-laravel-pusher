@@ -56,7 +56,7 @@ window.Echo.channel('chat')
         $('#emptyMessage').hide();
         if (username !== e.username) {
             toastr.success("New Message!");
-            $('#messages').append('<p><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
+            $('#messages').append('<p><strong>'+e.username+'('+e.time+')'+'</strong>'+ ': ' + e.message+'</p>');
             Push.create("New Message!", {
                 body: e.message,
                 timeout: 4000,
@@ -70,6 +70,6 @@ window.Echo.channel('chat')
                 Push.close();
             }, 4000);
         } else {
-            $('#messages').append('<p class="d-flex justify-content-end"><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
+            $('#messages').append('<p class="d-flex justify-content-end"><strong>'+e.username+'('+e.time+')'+'</strong>'+ ': ' + e.message+'</p>');
         }
     });
