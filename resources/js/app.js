@@ -18,7 +18,7 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     $(document).on('click','#send_message',function (e){
         e.preventDefault();
@@ -55,8 +55,20 @@ window.Echo.channel('chat')
         let username = $('#username').val();
         $('#emptyMessage').hide();
         if (username !== e.username) {
-            toastr.success("New message!");
+            toastr.success("New Message!");
             $('#messages').append('<p><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
+            Push.create("New Message!", {
+                body: e.message,
+                timeout: 4000,
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                }
+            });
+            
+            setTimeout(() => {
+                Push.close();
+            }, 4000);
         } else {
             $('#messages').append('<p class="d-flex justify-content-end"><strong>'+e.username+'</strong>'+ ': ' + e.message+'</p>');
         }

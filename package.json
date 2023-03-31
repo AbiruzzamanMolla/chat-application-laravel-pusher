@@ -15,6 +15,7 @@
     "dependencies": {
         "jquery": "^3.6.4",
         "laravel-echo": "^1.15.0",
+        "push.js": "^1.0.12",
         "pusher-js": "^8.0.1",
         "toastr": "^2.1.4"
     }
