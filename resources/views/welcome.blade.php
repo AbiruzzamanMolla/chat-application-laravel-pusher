@@ -89,7 +89,7 @@
         });
         
     </script>
-    <script src="{{ asset('build\assets\app-4d24cefa.js') }}"></script>
+    <script src="{{ asset('build\assets\app-5d00159b.js') }}"></script>
 </body>
 
 </html>

@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
+        $messages = Message::latest()->get();
         return view('welcome', compact('messages'));
     }
 }
